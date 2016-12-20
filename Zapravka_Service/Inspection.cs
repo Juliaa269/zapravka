@@ -12,28 +12,34 @@ namespace Zapravka_Service
         //Событие OnFinish c типом делегата MethodContainer.
         public event MethodStart onStart;
 
-        public Boolean IsАFree;//на теосмотре
+        public Boolean status;//на теосмотре
         public Stack<Client> parking;
         private Client car;
 
+        private const bool BUSY = false;
+        private const bool FREE  = true;
+
         public Inspection()
         {
-            this.IsАFree = true;
+            this.status = FREE;
         }
         public void Start(Client c, Stack<Client> s)
-        {
-            this.IsАFree = false;
+        { 
+            this.status = BUSY;
             this.car = c;
             this.car.SetIsWorkInspaction(true);
             this.parking = s;
-            if (!this.IsАFree) { if (onStart != null) onStart(); }
+
+            if (onStart != null)
+                onStart(); 
         }
-        public void Finish(Client Cl)
+        public void Finish(Client client)
         {
             this.parking.Pop();
-            Cl.SetIsWorkInspaction(false); this.IsАFree = true;
+            client.SetIsWorkInspaction(false);
+            this.status = FREE;
             // MessageBox.Show(Cl.GetClientName() + "Событие:Заправился; Покинул очередь");
-            Cl = null;
+            client = null;
         }
     }
 }

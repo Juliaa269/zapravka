@@ -133,7 +133,7 @@ namespace Zapravka_Service
                 rbStat.Text += "      " + Cl.GetClientName() + "  приоритет " + Cl.GetPriority().ToString() + "/100\r\n      "
                 + Cl.GetClientName() + " время обслуживания" + Cl.GetWorkTime().ToString() + " сек.\r\n";
                 Cl.SetIsWorkInspaction(true);
-                if (inspect.IsАFree)
+                if (inspect.status)
                 {
                     inspect.Start(Cl, parking);
                     rbStat.Text += "\n на техосмотре " + " обслуживается: " + Cl.GetClientName();
@@ -143,7 +143,7 @@ namespace Zapravka_Service
             }
             else
             {
-                if (!inspect.IsАFree)
+                if (!inspect.status)
                     rbStat.Text += "Процесс осмотра идет.";
             }
         }
