@@ -154,19 +154,19 @@ namespace Zapravka_Service
                 + "; время обслуживания: " + Cl.GetWorkTime().ToString()
                 + ")  клиент покинул заправку\n";
         }
-        public void FinishInspect(Client Cl)
+        public void FinishInspect(Client client)
         {
             rbStat.Text += "  \n "
-                + Cl.GetClientName()
-                + " (приоритет: " + Cl.GetPriority().ToString()
-                + "; время ожидания в стеке: " + Cl.GetTimeInStack().ToString()
-                + "; время обслуживания: " + Cl.GetWorkTime().ToString()
+                + client.GetClientName()
+                + " (приоритет: " + client.GetPriority().ToString()
+                + "; время ожидания в стеке: " + client.GetTimeInStack().ToString()
+                + "; время обслуживания: " + client.GetWorkTime().ToString()
                 + ")  клиент покинул техосмотр\n";
             Random rnd = new Random();
             int situation = (int)rnd.Next(2);
             switch (situation)
             { 
-                case 0: m_Queue[situation].Enqueue(Cl); break;
+                case 0: m_Queue[situation].Enqueue(client); break;
             default: break;
             }
         }
@@ -178,10 +178,10 @@ namespace Zapravka_Service
         {
             rbStat.Text += "  \n - техосмотр стартовал\n";
         }
-        public void UpdateTimeInQueue(Client Cl)
+        public void UpdateTimeInQueue(Client client)
         {
             rbStat.Text += "  \n "
-                + Cl.GetClientName()
+                + client.GetClientName()
                 + "- ожидает обслуживания автомата заправки\n";
         }
         public void UpdateTimeInStack(Client client)
