@@ -17,7 +17,7 @@ namespace Zapravka_Service
     public partial class Form1 : Form
     {
         public Queue<Client>[] m_Queue = new Queue<Client>[2];//Очередь 1
-        public MyPriorityQueue SourceCars = new MyPriorityQueue();
+        public MyPriorityQueue sourceCars = new MyPriorityQueue();
         public Stack<Client> parking = new Stack<Client>();
         public Stack<Client> inspection = new Stack<Client>();
         public Form1()
@@ -35,10 +35,10 @@ namespace Zapravka_Service
             for (int i = 0; i < 10; i++)//Запустили партию машин в очередь с приоритетом
             {
                 Client client = new Client();
-                SourceCars.arr.Add(client);
+                sourceCars.arr.Add(client);
             }
-            SourceCars.MakePyramid();
-            SourceCars.PyramidSort();
+            sourceCars.MakePyramid();
+            sourceCars.PyramidSort();
 
       
         }
@@ -68,21 +68,21 @@ namespace Zapravka_Service
             inspect.onStart += new Inspection.MethodStart(this.DecLeftTimeInspection);
             inspect.onStart += new Inspection.MethodStart(client.DecLeftTimeInspaction);
 
-            SourceCars.arr.Add(client);
-            SourceCars.MakePyramid();
-            SourceCars.PyramidSort();
+            sourceCars.arr.Add(client);
+            sourceCars.MakePyramid();
+            sourceCars.PyramidSort();
             this.rbStat.Text += "Пришла машина. " + client.GetClientName() + " встала по приоритету.\r \n ";
 
             Random rQ = new Random();
             int rrQ = (int)(rQ.Next(3));//постановка в очередь
 
-            if (SourceCars.arr.Count > 0)
+            if (sourceCars.arr.Count > 0)
             {
                 switch (rrQ)
                 {
-                    case 0: Zapravka(m_Queue[0], SourceCars.arr[0], refilling, this.rbColumn1, 1); break;
-                    case 1: Zapravka(m_Queue[1], SourceCars.arr[0], refilling, this.rbColumn2, 2); break;
-                    case 2: Parking(parking,SourceCars.arr[0], this.rbParking ); break;
+                    case 0: Zapravka(m_Queue[0], sourceCars.arr[0], refilling, this.rbColumn1, 1); break;
+                    case 1: Zapravka(m_Queue[1], sourceCars.arr[0], refilling, this.rbColumn2, 2); break;
+                    case 2: Parking(parking,sourceCars.arr[0], this.rbParking ); break;
                 }
                 if (parking.Count>9) Inspection(inspection, parking.Peek(), inspect, this.rbInspection);
             }
@@ -96,7 +96,7 @@ namespace Zapravka_Service
         {
             if (!Cl.GetIsWork())
             {
-                Q.Enqueue(Cl); SourceCars.arr.Remove(Cl);
+                Q.Enqueue(Cl); sourceCars.arr.Remove(Cl);
                 z.Text += "> Автомобиль<" + Cl.GetClientName() + "> присоединился к очереди на заправку..." + '\r' + '\n';
                 rbStat.Text += "      " + Cl.GetClientName() + "  приоритет " + Cl.GetPriority().ToString() + "/100\r\n      "
                          + Cl.GetClientName() + " время обслуживания" + Cl.GetWorkTime().ToString() + " сек.\r\n";
@@ -117,14 +117,14 @@ namespace Zapravka_Service
         }
         private void Parking(Stack<Client> parking, Client Cl, RichTextBox z)
         {
-            parking.Push(Cl); SourceCars.arr.Remove(Cl);
+            parking.Push(Cl); sourceCars.arr.Remove(Cl);
             z.Text += "> Автомобиль<" + Cl.GetClientName() + "> стал на стоянку..." + '\r' + '\n';
         }
         private void Inspection(Stack<Client> insp, Client Cl, Inspection inspect , RichTextBox z)
         {
             if (!Cl.GetIsWork())
             {
-                insp.Push(Cl); SourceCars.arr.Remove(Cl);
+                insp.Push(Cl); sourceCars.arr.Remove(Cl);
                 z.Text += "> Автомобиль<" + Cl.GetClientName() + "> стал на техосмотр..." + '\r' + '\n';
                 rbStat.Text += "      " + Cl.GetClientName() + "  приоритет " + Cl.GetPriority().ToString() + "/100\r\n      "
                 + Cl.GetClientName() + " время обслуживания" + Cl.GetWorkTime().ToString() + " сек.\r\n";
