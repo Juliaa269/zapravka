@@ -32,14 +32,14 @@ namespace Zapravka_Service
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            
+            /*
             for (int i = 0; i < 10; i++)//Запустили партию машин в очередь с приоритетом
             {
             
                 Client client = new Client(nextClientName());
                 sourceCars.arr.Add(client);
             }
-            sourceCars.PyramidSort();
+            sourceCars.PyramidSort();*/
         }
 
         private String nextClientName()
