@@ -23,21 +23,19 @@ namespace Zapravka_Service
         public Form1()
         {
             InitializeComponent();
-            int j = 0;
-            foreach (Queue<Client> i in m_Queue)
-            {
-                m_Queue[j] = new Queue<Client>();
-                j++;
+           
+            for (int i = 0; i < m_Queue.Length; i++)           {
+                m_Queue[i] = new Queue<Client>();              
             }
         }
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            Client Client;
+           
             for (int i = 0; i < 10; i++)//Запустили партию машин в очередь с приоритетом
             {
-                Client = new Client();
-                SourceCars.arr.Add(Client);
+                Client client = new Client();
+                SourceCars.arr.Add(client);
             }
             SourceCars.MakePyramid();
             SourceCars.PyramidSort();
@@ -101,7 +99,7 @@ namespace Zapravka_Service
                 Q.Enqueue(Cl); SourceCars.arr.Remove(Cl);
                 z.Text += "> Автомобиль<" + Cl.GetClientName() + "> присоединился к очереди на заправку..." + '\r' + '\n';
                 rbStat.Text += "      " + Cl.GetClientName() + "  приоритет " + Cl.GetPriority().ToString() + "/100\r\n      "
-                + Cl.GetClientName() + " время обслуживания" + Cl.GetWorkTime().ToString() + " сек.\r\n";
+                         + Cl.GetClientName() + " время обслуживания" + Cl.GetWorkTime().ToString() + " сек.\r\n";
                 Cl.SetIsWorkColumn(true);
                 if (refill.IsАFree)
                 {
@@ -162,6 +160,7 @@ namespace Zapravka_Service
                 + "; время ожидания в стеке: " + client.GetTimeInStack().ToString()
                 + "; время обслуживания: " + client.GetWorkTime().ToString()
                 + ")  клиент покинул техосмотр\n";
+            addToRandomQueue(client);
         }
 
         private void addToRandomQueue(Client client) {
