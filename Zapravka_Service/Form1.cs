@@ -162,11 +162,14 @@ namespace Zapravka_Service
                 + "; время ожидания в стеке: " + client.GetTimeInStack().ToString()
                 + "; время обслуживания: " + client.GetWorkTime().ToString()
                 + ")  клиент покинул техосмотр\n";
+        }
+
+        private void addToRandomQueue(Client client) {
             Random rnd = new Random();
             int situation = (int)rnd.Next(2);
-            m_Queue[0].Enqueue(client);
-           
+            m_Queue[situation].Enqueue(client);
         }
+
         public void DecLeftTimeColumn()
         {
             rbStat.Text += "  \n - автомат стартовал\n";
