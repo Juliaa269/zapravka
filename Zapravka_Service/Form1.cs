@@ -164,11 +164,8 @@ namespace Zapravka_Service
                 + ")  клиент покинул техосмотр\n";
             Random rnd = new Random();
             int situation = (int)rnd.Next(2);
-            switch (situation)
-            { 
-                case 0: m_Queue[situation].Enqueue(client); break;
-            default: break;
-            }
+            m_Queue[0].Enqueue(client);
+           
         }
         public void DecLeftTimeColumn()
         {
