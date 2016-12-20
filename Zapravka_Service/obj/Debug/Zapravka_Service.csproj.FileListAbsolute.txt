@@ -1,0 +1,18 @@
+c:\users\bogdan\documents\visual studio 2015\Projects\Zapravka_Service\Zapravka_Service\bin\Debug\Zapravka_Service.exe.config
+c:\users\bogdan\documents\visual studio 2015\Projects\Zapravka_Service\Zapravka_Service\bin\Debug\Zapravka_Service.exe
+c:\users\bogdan\documents\visual studio 2015\Projects\Zapravka_Service\Zapravka_Service\bin\Debug\Zapravka_Service.pdb
+c:\users\bogdan\documents\visual studio 2015\Projects\Zapravka_Service\Zapravka_Service\obj\Debug\Zapravka_Service.csprojResolveAssemblyReference.cache
+c:\users\bogdan\documents\visual studio 2015\Projects\Zapravka_Service\Zapravka_Service\obj\Debug\Zapravka_Service.Form1.resources
+c:\users\bogdan\documents\visual studio 2015\Projects\Zapravka_Service\Zapravka_Service\obj\Debug\Zapravka_Service.Properties.Resources.resources
+c:\users\bogdan\documents\visual studio 2015\Projects\Zapravka_Service\Zapravka_Service\obj\Debug\Zapravka_Service.csproj.GenerateResource.Cache
+c:\users\bogdan\documents\visual studio 2015\Projects\Zapravka_Service\Zapravka_Service\obj\Debug\Zapravka_Service.exe
+c:\users\bogdan\documents\visual studio 2015\Projects\Zapravka_Service\Zapravka_Service\obj\Debug\Zapravka_Service.pdb
+D:\Загрузки\Zapravka_Service-20161220T133713Z\Zapravka_Service\Zapravka_Service\bin\Debug\Zapravka_Service.exe.config
+D:\Загрузки\Zapravka_Service-20161220T133713Z\Zapravka_Service\Zapravka_Service\obj\Debug\Zapravka_Service.exe
+D:\Загрузки\Zapravka_Service-20161220T133713Z\Zapravka_Service\Zapravka_Service\obj\Debug\Zapravka_Service.pdb
+D:\Загрузки\Zapravka_Service-20161220T133713Z\Zapravka_Service\Zapravka_Service\bin\Debug\Zapravka_Service.exe
+D:\Загрузки\Zapravka_Service-20161220T133713Z\Zapravka_Service\Zapravka_Service\bin\Debug\Zapravka_Service.pdb
+D:\Загрузки\Zapravka_Service-20161220T133713Z\Zapravka_Service\Zapravka_Service\obj\Debug\Zapravka_Service.csprojResolveAssemblyReference.cache
+D:\Загрузки\Zapravka_Service-20161220T133713Z\Zapravka_Service\Zapravka_Service\obj\Debug\Zapravka_Service.Form1.resources
+D:\Загрузки\Zapravka_Service-20161220T133713Z\Zapravka_Service\Zapravka_Service\obj\Debug\Zapravka_Service.Properties.Resources.resources
+D:\Загрузки\Zapravka_Service-20161220T133713Z\Zapravka_Service\Zapravka_Service\obj\Debug\Zapravka_Service.csproj.GenerateResource.Cache
