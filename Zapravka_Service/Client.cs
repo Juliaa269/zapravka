@@ -24,8 +24,9 @@ namespace Zapravka_Service
        private int m_timeInQueue;//Время ожидания в очереди
        private int m_timeInStack;//Время ожидания в стеке
        private Boolean IsWork;//признак того,что он на заправляется или на осмотре
-       public Client()
+       public Client(String clientName)
        {
+            this.m_clientName = clientName;
         Random rtime = new Random();
         int randtime = (int)(rtime.Next(5) + 5);//Время постановки в очередь
         this.IsWork = false;
@@ -33,9 +34,7 @@ namespace Zapravka_Service
         int randprio = (int)(rprio.Next(100));//приоритет
         this.prioritet = randprio;
 
-        Random rchar = new Random();
-        this.m_clientName += (char)(rchar.Next(25) + (int)'A');//название автомобиля
-        for (int i = 0; i < 7; i++) this.m_clientName += (char)(rchar.Next(25) + (int)'a');
+        
        
            this.m_workTime = randtime;
            this.m_leftTime = this.m_workTime;

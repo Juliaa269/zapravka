@@ -20,6 +20,7 @@ namespace Zapravka_Service
         public MyPriorityQueue sourceCars = new MyPriorityQueue();
         public Stack<Client> parking = new Stack<Client>();
         public Stack<Client> inspection = new Stack<Client>();
+        Random rchar = new Random();
         public Form1()
         {
             InitializeComponent();
@@ -31,23 +32,32 @@ namespace Zapravka_Service
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-           
+            
             for (int i = 0; i < 10; i++)//Запустили партию машин в очередь с приоритетом
             {
-                Client client = new Client();
+            
+                Client client = new Client(nextClientName());
                 sourceCars.arr.Add(client);
             }
-            sourceCars.MakePyramid();
             sourceCars.PyramidSort();
-
-      
         }
+
+        private String nextClientName()
+        {
+            String clientName = "";
+            for (int j = 0; j < 7; j++)
+            {
+                clientName += (char)(rchar.Next(25) + (int)'a');
+            }
+            return clientName;
+        }
+
         private void timer1_Tick_1(object sender, EventArgs e)
         {
             //Подписались на событие окончания заправки машины
             //Подписываемся на событие MyEvent  
             // myClass.MyEvent += new MyDel(Handler);  
-            Client client = new Client();
+            Client client = new Client(nextClientName());
             client.onWaitRefilling += new Client.MethodWork(client.UpdateTimeInQueue);
             client.onWaitRefilling += new Client.MethodWork(this.UpdateTimeInQueue);
             client.onWaitInspection += new Client.MethodWork(client.UpdateTimeInStack);
@@ -69,7 +79,6 @@ namespace Zapravka_Service
             inspect.onStart += new Inspection.MethodStart(client.DecLeftTimeInspaction);
 
             sourceCars.arr.Add(client);
-            sourceCars.MakePyramid();
             sourceCars.PyramidSort();
             this.rbStat.Text += "Пришла машина. " + client.GetClientName() + " встала по приоритету.\r \n ";
 
@@ -92,19 +101,21 @@ namespace Zapravka_Service
                 this.timer1.Stop();
             }
         }
-        private void Zapravka(Queue<Client> Q, Client Cl, Refilling refill, RichTextBox z, int Nq)
+        private void Zapravka(Queue<Client> queue, Client client, Refilling refill, RichTextBox textBox, int Nq)
         {
-            if (!Cl.GetIsWork())
+            if (!client.GetIsWork())
             {
-                Q.Enqueue(Cl); sourceCars.arr.Remove(Cl);
-                z.Text += "> Автомобиль<" + Cl.GetClientName() + "> присоединился к очереди на заправку..." + '\r' + '\n';
-                rbStat.Text += "      " + Cl.GetClientName() + "  приоритет " + Cl.GetPriority().ToString() + "/100\r\n      "
-                         + Cl.GetClientName() + " время обслуживания" + Cl.GetWorkTime().ToString() + " сек.\r\n";
-                Cl.SetIsWorkColumn(true);
+                queue.Enqueue(client);
+                sourceCars.arr.Remove(client);
+
+                textBox.Text += "> Автомобиль<" + client.GetClientName() + "> присоединился к очереди на заправку..." + '\r' + '\n';
+                rbStat.Text += "      " + client.GetClientName() + "  приоритет " + client.GetPriority().ToString() + "/100\r\n      "
+                         + client.GetClientName() + " время обслуживания" + client.GetWorkTime().ToString() + " сек.\r\n";
+                client.SetIsWorkColumn(true);
                 if (refill.IsАFree)
                 {
-                    refill.Start(Cl, Q);
-                    rbStat.Text += "\n в очереди " + Nq + " обслуживается: " + Cl.GetClientName()+"\n";
+                    refill.Start(client, queue);
+                    rbStat.Text += "\n в очереди " + Nq + " обслуживается: " + client.GetClientName()+"\n";
 
                 }
                 else rbStat.Text += "Автомат занят.";
