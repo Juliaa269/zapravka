@@ -23,13 +23,13 @@ namespace Zapravka_Service
        public int m_leftTime;//оставшееся время обслуживания
        private int m_timeInQueue;//Время ожидания в очереди
        private int m_timeInStack;//Время ожидания в стеке
-       private Boolean IsWork;//признак того,что он на заправляется или на осмотре
+       private Boolean isBusy;//признак того,что он на заправляется или на осмотре
        public Client(String clientName)
        {
             this.m_clientName = clientName;
         Random rtime = new Random();
         int randtime = (int)(rtime.Next(5) + 5);//Время постановки в очередь
-        this.IsWork = false;
+        this.isBusy = false;
         Random rprio = new Random();
         int randprio = (int)(rprio.Next(100));//приоритет
         this.prioritet = randprio;
@@ -40,25 +40,27 @@ namespace Zapravka_Service
            this.m_leftTime = this.m_workTime;
        
         this.m_timeInQueue = 0;
-        this.IsWork = false;
+        this.isBusy = false;
    }
        public String GetClientName()
        {
            return m_clientName;
        }
-       public void SetIsWorkColumn(Boolean y)
+       public void refill(Boolean refillingStatus)
        {
-           this.IsWork = y;
-           if (onWaitRefilling != null) {if(this.IsWork) onWaitRefilling(this); }
+           this.isBusy = refillingStatus;
+           if (isBusy && onWaitRefilling != null) {
+               onWaitRefilling(this);
+            }
        }
-       public void SetIsWorkInspaction(Boolean y)
+       public void SetIsWorkInspaction(Boolean inspectionStarted)
        {
-            this.IsWork = y;
-            if (onWaitInspection != null) { if (this.IsWork) onWaitInspection(this); }
+            this.isBusy = inspectionStarted;
+            if (onWaitInspection != null) { if (this.isBusy) onWaitInspection(this); }
        }
         public Boolean GetIsWork()
        {
-           return this.IsWork;
+           return this.isBusy;
        }
        public int GetWorkTime()
        {

@@ -23,14 +23,17 @@ namespace Zapravka_Service
         {
             this.IsАFree = false;
             this.car = c;
-            this.car.SetIsWorkColumn(true);
+            this.car.refill(true);
             this.Q = v;
-            if (!this.IsАFree) { if (onStart != null)  onStart(); }
+            if (!this.IsАFree)
+            {
+                if (onStart != null)  onStart();
+            }
         }
         public void Finish(Client Cl)
         {
             this.Q.Dequeue();
-            Cl.SetIsWorkColumn(false); this.IsАFree = true;
+            Cl.refill(false); this.IsАFree = true;
            // MessageBox.Show(Cl.GetClientName() + "Событие:Заправился; Покинул очередь");
             Cl = null;
         }

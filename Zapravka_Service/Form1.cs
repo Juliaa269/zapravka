@@ -104,7 +104,7 @@ namespace Zapravka_Service
                 textBox.Text += "> Автомобиль<" + client.GetClientName() + "> присоединился к очереди на заправку..." + '\r' + '\n';
                 rbStat.Text += "      " + client.GetClientName() + "  приоритет " + client.GetPriority().ToString() + "/100\r\n      "
                          + client.GetClientName() + " время обслуживания" + client.GetWorkTime().ToString() + " сек.\r\n";
-                client.SetIsWorkColumn(true);
+                client.refill(true);
                 if (refill.IsАFree)
                 {
                     refill.Start(client, queue);
